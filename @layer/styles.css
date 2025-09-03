@@ -1,0 +1,338 @@
+/* ===== ОПРЕДЕЛЕНИЕ СЛОЕВ ===== */
+@layer reset, base, themes, components, utilities, overrides;
+
+/* ===== СЛОЙ СБРОСА СТИЛЕЙ ===== */
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+  }
+
+  button,
+  input,
+  textarea {
+    font: inherit;
+  }
+}
+
+/* ===== БАЗОВЫЕ СТИЛИ ===== */
+@layer base {
+  :root {
+    /* Цветовая палитра */
+    --color-primary: #2563eb;
+    --color-primary-hover: #1d4ed8;
+    --color-secondary: #64748b;
+    --color-success: #10b981;
+    --color-error: #ef4444;
+    --color-warning: #f59e0b;
+
+    /* Текстовые цвета */
+    --color-text: #1f2937;
+    --color-text-light: #6b7280;
+    --color-heading: #111827;
+
+    /* Фоны */
+    --color-bg: #ffffff;
+    --color-bg-secondary: #f8fafc;
+    --color-bg-card: #ffffff;
+
+    /* Границы */
+    --color-border: #e5e7eb;
+    --border-radius: 8px;
+
+    /* Тени */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+
+    /* Отступы */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+  }
+
+  .dark-theme {
+    --color-text: #e5e7eb;
+    --color-text-light: #9ca3af;
+    --color-heading: #f9fafb;
+    --color-bg: #111827;
+    --color-bg-secondary: #1f2937;
+    --color-bg-card: #1a2435;
+    --color-border: #374151;
+  }
+
+  body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: all 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-heading);
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+  }
+}
+
+/* ===== КОМПОНЕНТЫ ===== */
+@layer components {
+  /* Карточки */
+  .card {
+    background: var(--color-bg-card);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-heading);
+  }
+
+  .card-description {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  /* Кнопки */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    border: 2px solid transparent;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .btn-primary {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  .btn-secondary {
+    background-color: var(--color-secondary);
+    color: white;
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .btn-full {
+    width: 100%;
+  }
+  .btn-l {
+    width: 30%;
+  }
+
+  /* Группа кнопок */
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+
+  /* Уведомления */
+  .alert {
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-lg);
+    border-left: 4px solid;
+  }
+
+  .alert-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    border-color: var(--color-success);
+    color: var(--color-success);
+  }
+
+  /* Формы */
+  .form {
+    background: var(--color-bg-card);
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+  }
+
+  .form-group {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    font-weight: 500;
+    color: var(--color-heading);
+  }
+
+  .form-input {
+    width: 100%;
+    padding: var(--spacing-sm);
+    border: 2px solid var(--color-border);
+    border-radius: var(--border-radius);
+    background: var(--color-bg);
+    color: var(--color-text);
+    transition: border-color 0.2s ease;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+
+  .form-input-error {
+    border-color: var(--color-error);
+  }
+
+  .form-error {
+    color: var(--color-error);
+    font-size: 0.875rem;
+    margin-top: var(--spacing-xs);
+  }
+}
+
+/* ===== УТИЛИТЫ ===== */
+@layer utilities {
+  .text-center {
+    text-align: center;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .text-right {
+    text-align: right;
+  }
+
+  .mt-1 {
+    margin-top: var(--spacing-xs);
+  }
+  .mt-2 {
+    margin-top: var(--spacing-sm);
+  }
+  .mt-4 {
+    margin-top: var(--spacing-md);
+  }
+  .mt-6 {
+    margin-top: var(--spacing-lg);
+  }
+  .mt-8 {
+    margin-top: var(--spacing-xl);
+  }
+
+  .mb-1 {
+    margin-bottom: var(--spacing-xs);
+  }
+  .mb-2 {
+    margin-bottom: var(--spacing-sm);
+  }
+  .mb-4 {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .hidden {
+    display: none;
+  }
+  .block {
+    display: block;
+  }
+  .flex {
+    display: flex;
+  }
+
+  .justify-between {
+    justify-content: space-between;
+  }
+  .items-center {
+    align-items: center;
+  }
+}
+
+/* ===== ПЕРЕОПРЕДЕЛЕНИЯ ===== */
+@layer overrides {
+  /* Переопределения для специфичных случаев */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-border);
+  }
+
+  .theme-toggle {
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+  }
+
+  .theme-toggle:hover {
+    background: var(--color-primary-hover);
+  }
+}
+
+/* ===== СТИЛИ ВНЕ СЛОЕВ (максимальный приоритет) ===== */
+/* Критически важные стили, которые должны всегда применяться */
+#critical-styles {
+  position: relative;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
